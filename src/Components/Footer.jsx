@@ -180,10 +180,7 @@ function SubscribeForm() {
               required
               placeholder="Enter your email address"
             />
-            <button
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
-              type="submit"
-            >
+            <button className=" text-nowrap p-3 px-6  rounded-lg" type="submit">
               Get Started
             </button>
           </div>
