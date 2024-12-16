@@ -14,9 +14,7 @@ export default function Navbar() {
         <div className="w-44 h-24 bg-contain bg-no-repeat bg-center bg-[url(https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2024/03/logo-zento-personal-1.png)] "></div>
         <div className="flex items-center justify-center gap-2">
           <div>
-            <button className="bg-[#ff6480] p-2 px-4 text-white rounded ">
-              Subscribe
-            </button>
+            <button className=" p-2 px-4 text-white rounded ">Subscribe</button>
           </div>
           <div>
             <TiThMenuOutline className="size-5" />
