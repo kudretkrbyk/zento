@@ -24,4 +24,5 @@
 /* Tailwind dışında global bir stil tanımlamak gerekiyorsa */
 button {
   background-color: #ff6480;
+  color: white;
 }
