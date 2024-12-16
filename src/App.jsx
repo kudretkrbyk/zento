@@ -1,6 +1,7 @@
 import Navbar from "./Components/Navbar";
 import AboutMe from "./Components/AboutMe";
 import TrendingTopics from "./Components/TrendingTopics";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Navbar></Navbar>
       <AboutMe></AboutMe>
       <TrendingTopics></TrendingTopics>
+      <Footer></Footer>
     </div>
   );
 }
