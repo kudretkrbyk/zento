@@ -15,5 +15,5 @@ export const useGetCategories = () => {
     queryFn: fetchCategories, // Veri getiren fonksiyon
   });
 
-  return { blogs: data, error, isLoading, isError };
+  return { categories: data, error, isLoading, isError };
 };
