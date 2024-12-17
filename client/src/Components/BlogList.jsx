@@ -14,7 +14,7 @@ export default function BlogList() {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="w-full">
       <h1 className="text-2xl font-bold mb-4">Blog Listesi</h1>
       {blogs.map((blog) => (
         <div key={blog.id} className="border-b mb-4 pb-4">

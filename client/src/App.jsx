@@ -1,17 +1,17 @@
 import Navbar from "./Components/Navbar";
-import AboutMe from "./Components/AboutMe";
+import LetsConnect from "./Components/LetsConnect";
 import TrendingTopics from "./Components/TrendingTopics";
 import Footer from "./Components/Footer";
-import BlogList from "./Components/BlogList";
+import BlogMain from "./Components/BlogMain";
 
 function App() {
   return (
     <div className="bg-[#fff4f5] w-full h-full">
       <Navbar></Navbar>
-      <AboutMe></AboutMe>
+      <LetsConnect></LetsConnect>
       <TrendingTopics></TrendingTopics>
+      <BlogMain></BlogMain>
       <Footer></Footer>
-      <BlogList></BlogList>
     </div>
   );
 }
