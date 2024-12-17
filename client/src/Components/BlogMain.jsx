@@ -4,7 +4,7 @@ import BlogList from "./BlogList";
 export default function BlogMain() {
   return (
     <div className="w-full flex  items-start justify-center gap-10 p-24">
-      <div className="w-4/12">
+      <div className="w-4/12 sticky top-0">
         {" "}
         <AboutMe></AboutMe>
       </div>

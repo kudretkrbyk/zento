@@ -2,13 +2,13 @@ import { IoFlashSharp } from "react-icons/io5";
 
 export default function AboutMe() {
   return (
-    <div className="w-full flex flex-col items-start justify-center gap-10">
-      <div className="flex items-center justify-center">
+    <div className="w-full flex flex-col items-start justify-center gap-10  ">
+      <div className="flex items-center justify-center ">
         <IoFlashSharp className="size-5 text-[#ff6480]" />
         <span> About Me</span>
       </div>
-      <div className="w-full bg-white rounded flex flex-col p-5 gap-10">
-        <div className="flex items-center justify-start gap-5">
+      <div className="w-full bg-white rounded flex flex-col p-5 gap-10 ">
+        <div className="flex items-center justify-start gap-5 ">
           <img
             className="rounded-full w-24 h-24"
             src="https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2024/03/about-personal.webp"
