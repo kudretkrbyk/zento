@@ -1,12 +1,10 @@
-import React from "react";
-
 export default function TrendingTopics() {
   return (
     <div className="flex flex-col items-center justify-center w-full p-24 gap-5">
       <div>
         <h2 className="title bordered medium textcenter">
           <svg className="icon large secondary-color">
-            <use xlink:href="https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/themes/zento/assets/images/svg-icons.svg#trending-icon"></use>
+            <use href="https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/themes/zento/assets/images/svg-icons.svg#trending-icon"></use>
           </svg>{" "}
           Trending Topics
         </h2>
