@@ -1,4 +1,7 @@
-import React from "react";
+import { FaXTwitter } from "react-icons/fa6";
+import { IoLogoFacebook } from "react-icons/io5";
+import { RiInstagramFill } from "react-icons/ri";
+import { FaTiktok } from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -78,10 +81,22 @@ export default function Footer() {
 
 function SocialLinks() {
   const socialLinks = [
-    { name: "Twitter", href: "#", icon: "twitter-icon" },
-    { name: "Facebook", href: "#", icon: "facebook-icon" },
-    { name: "Instagram", href: "#", icon: "instagram-icon" },
-    { name: "Tiktok", href: "#", icon: "tiktok-icon" },
+    { name: "Twitter", href: "#", icon: <FaXTwitter></FaXTwitter> },
+    {
+      name: "Facebook",
+      href: "#",
+      icon: <IoLogoFacebook className="text-blue-500"></IoLogoFacebook>,
+    },
+    {
+      name: "Instagram",
+      href: "#",
+      icon: <RiInstagramFill className="text-pink-400"></RiInstagramFill>,
+    },
+    {
+      name: "Tiktok",
+      href: "#",
+      icon: <FaTiktok className="text-green-500"></FaTiktok>,
+    },
   ];
 
   return (
@@ -91,19 +106,17 @@ function SocialLinks() {
       </h3>
       <ul className="flex flex-col gap-4">
         {socialLinks.map((link, index) => (
-          <li key={index}>
+          <li key={index} className="">
             <a
               href={link.href}
               target="_blank"
               rel="nofollow noopener"
-              className="flex items-center gap-2 text-gray-600 hover:text-gray-800"
+              className="flex items-center justify-between gap-2 text-gray-600 hover:text-gray-800"
             >
-              <svg className="w-6 h-6">
-                <use xlinkHref={`#${link.icon}`}></use>
-              </svg>
               <span>
                 Follow on <b>{link.name}</b>
               </span>
+              <div>{link.icon} </div>
             </a>
           </li>
         ))}
