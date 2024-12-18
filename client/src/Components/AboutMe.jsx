@@ -1,4 +1,7 @@
 import { IoFlashSharp } from "react-icons/io5";
+import { FaXTwitter } from "react-icons/fa6";
+import { IoLogoFacebook } from "react-icons/io5";
+import { BiWorld } from "react-icons/bi";
 
 export default function AboutMe() {
   return (
@@ -24,9 +27,18 @@ export default function AboutMe() {
           my next tutorials.
         </div>
         <div className="flex items-center justify-center gap-10">
-          <div>Twitter</div>
-          <div>Facebook</div>
-          <div>Website</div>
+          <div className="flex items-center justify-center gap-2">
+            <FaXTwitter className="size-5" />
+            Twitter
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <IoLogoFacebook className="text-blue-500 size-5" />
+            Facebook
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <BiWorld className="size-5" />
+            Website
+          </div>
         </div>
       </div>
       <div className="flex flex-col items-start justify-center gap-5">
