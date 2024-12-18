@@ -3,6 +3,7 @@ import LetsConnect from "./Components/LetsConnect";
 import TrendingTopics from "./Components/TrendingTopics";
 import Footer from "./Components/Footer";
 import BlogMain from "./Components/BlogMain";
+import JoinToCommunity from "./Components/JoinToCommunity";
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <Navbar></Navbar>
       <LetsConnect></LetsConnect>
       <TrendingTopics></TrendingTopics>
-      <BlogMain></BlogMain>
+      <BlogMain></BlogMain> <JoinToCommunity></JoinToCommunity>
       <Footer></Footer>
     </div>
   );
