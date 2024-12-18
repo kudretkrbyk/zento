@@ -19,17 +19,22 @@ export default function TrendingTopics() {
         <IoFlashSharp className="size-5 text-[#ff6480]" />
         <h2 className="title bordered medium textcenter">Trending Topics</h2>
       </div>
-      <div className="bg-white w-3/4 h-24 rounded-full p-10 flex items-center justify-between gap-3">
+      <div className="bg-white w-3/4 h-30 rounded-full p-10 flex items-center justify-between gap-3">
         {categories.map((e, index) => (
           <div
             key={index}
-            className="w-20 h-20  rounded-full bg-none hover:bg-[#ff6480] duration-500  flex items-center justify-center gap-10   "
+            className=" w-full  flex flex-col items-center justify-center gap-1   "
           >
-            <img
-              src={e.kategori_fotograf}
-              alt="Blog Görsel"
-              className="w-16 h-16 object-cover rounded-full   "
-            />
+            <div className="w-20 h-20  rounded-full bg-none hover:bg-[#ff6480] duration-500  flex flex-col items-center justify-center gap-10">
+              {" "}
+              <img
+                src={e.kategori_fotograf}
+                alt="Blog Görsel"
+                className="w-16 h-16 object-cover rounded-full   "
+              />
+            </div>
+
+            <span>{e.kategori_adi} </span>
           </div>
         ))}
         <div className="flex items-end justify-center gap-4">
