@@ -29,6 +29,43 @@ export default function AboutMe() {
           <div>Website</div>
         </div>
       </div>
+      <div className="flex flex-col items-start justify-center gap-5">
+        <div className="flex items-center justify-start gap-4">
+          {" "}
+          <IoFlashSharp className="size-5 text-[#ff6480]" />
+          <span>Tag Cloud</span>
+        </div>
+        <div className="w-full grid grid-cols-3 gap-2">
+          <div className="w-full flex items-center gap-5 hover:gap-2 duration-300 group">
+            <div className="bg-yellow-500 rounded-full w-3 h-3 group-hover:w-6 duration-300"></div>
+            <span>Health</span>
+          </div>{" "}
+          <div className=" w-full flex items-center gap-5 hover:gap-2 duration-300 group">
+            <div className="bg-yellow-500 rounded-full w-3 h-3 group-hover:w-6 duration-300"></div>
+            <span>Inspiration</span>
+          </div>{" "}
+          <div className="flex items-center gap-5 hover:gap-2 duration-300 group">
+            <div className="bg-yellow-500 rounded-full w-3 h-3 group-hover:w-6 duration-300"></div>
+            <span>Lifestyle</span>
+          </div>{" "}
+          <div className="flex items-center gap-5 hover:gap-2 duration-300 group">
+            <div className="bg-yellow-500 rounded-full w-3 h-3 group-hover:w-6 duration-300"></div>
+            <span>Music</span>
+          </div>{" "}
+          <div className="flex items-center gap-5 hover:gap-2 duration-300 group">
+            <div className="bg-yellow-500 rounded-full w-3 h-3 group-hover:w-6 duration-300"></div>
+            <span>Technology</span>
+          </div>{" "}
+          <div className="flex items-center gap-5 hover:gap-2 duration-300 group">
+            <div className="bg-yellow-500 rounded-full w-3 h-3 group-hover:w-6 duration-300"></div>
+            <span>Travel</span>
+          </div>
+          <div className="flex items-center gap-5 hover:gap-2 duration-300 group">
+            <div className="bg-yellow-500 rounded-full w-3 h-3 group-hover:w-6 duration-300"></div>
+            <span>Video</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
