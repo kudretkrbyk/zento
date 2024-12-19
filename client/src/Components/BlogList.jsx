@@ -35,11 +35,11 @@ export default function BlogList() {
   };
 
   return (
-    <div className="w-full flex flex-col items-start justify-center gap-10 p-10">
+    <div className="w-full h-full flex flex-col items-start justify-center gap-10 p-10">
       {currentBlogs.map((blog) => (
         <div
           key={blog.id}
-          className="w-full flex items-start justify-center gap-5 bg-white p-4 relative shadow-lg rounded-lg"
+          className="w-full h-full flex items-start justify-center gap-5 bg-white p-4 relative shadow-lg rounded-lg"
         >
           <img
             src={blog.foto1}
@@ -50,13 +50,21 @@ export default function BlogList() {
             {blog.kategori}
           </div>
 
-          <div className="flex flex-col gap-5 items-start justify-center">
+          <div className="w-full h-48 flex flex-col gap-5 items-start justify-around ">
             <h2 className="text-xl font-semibold hover:underline hover:cursor-pointer">
               {blog.baslik}
             </h2>
             <p className="text-gray-700">
               {blog.metin1.split(" ").slice(0, 20).join(" ")}...
-            </p>
+            </p>{" "}
+            <div className="w-full flex items-center justify-end gap-2 ">
+              <img
+                src={blog.yazar_foto}
+                alt={`${blog.yazar_adi} Fotoğraf`}
+                className="w-5 h-5 object-cover rounded-full"
+              />
+              <span> {blog.yazar_adi}</span>
+            </div>
           </div>
         </div>
       ))}
