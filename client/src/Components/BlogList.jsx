@@ -7,6 +7,9 @@ export default function BlogList() {
   const [currentPage, setCurrentPage] = useState(1); // Mevcut sayfa numarası
   const blogsPerPage = 5; // Sayfa başına gösterilecek blog sayısı
   const navigate = useNavigate(); // Yönlendirme hook'u
+  const handleBlogClick = (blog) => {
+    navigate(`/blogs/${blog.id}`, { state: blog }); // Blog bilgilerini state ile aktar
+  };
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -55,7 +58,7 @@ export default function BlogList() {
           <div className="w-full h-48 flex flex-col gap-5 items-start justify-around">
             <h2
               className="text-xl font-semibold hover:underline hover:cursor-pointer"
-              onClick={() => navigate(`/blogs/${blog.id}`)} // Tıklandığında yönlendir
+              onClick={() => handleBlogClick(blog)} // Bloga tıklanınca çalışır
             >
               {blog.baslik}
             </h2>
