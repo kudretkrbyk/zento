@@ -1,24 +1,37 @@
-import { useNavigate } from "react-router-dom"; // Yönlendirme için import
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 export default function LogIn() {
-  const navigate = useNavigate(); // Yönlendirme hook'u
+  const navigate = useNavigate();
+  const { logIn, error, loading } = useContext(AuthContext); // AuthContext'ten logIn fonksiyonunu alıyoruz
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const success = await logIn(email, password); // AuthContext logIn fonksiyonunu çağır
+    if (success) {
+      navigate("/"); // Başarılı girişten sonra ana sayfaya yönlendir
+    }
+  };
+
   const handleSignUpLink = () => {
     navigate("/signUp");
   };
+
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <a
-            href="#"
-            className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
-          ></a>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign in to your account
               </h1>
-              <htmlForm className="space-y-4 md:space-y-6" action="#">
+              {error && <p className="text-red-500 text-sm">{error}</p>}
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                 <div>
                   <label
                     htmlFor="email"
@@ -30,9 +43,12 @@ export default function LogIn() {
                     type="email"
                     name="email"
                     id="email"
+                    value={email}
+                    autoComplete="username"
+                    onChange={(e) => setEmail(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
-                    required=""
+                    required
                   />
                 </div>
                 <div>
@@ -46,51 +62,33 @@ export default function LogIn() {
                     type="password"
                     name="password"
                     id="password"
+                    value={password}
+                    autoComplete="current-password"
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required=""
+                    required
                   />
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-start">
-                    <div className="flex items-center h-5">
-                      <input
-                        id="remember"
-                        aria-describedby="remember"
-                        type="checkbox"
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                        required=""
-                      />
-                    </div>
-                    <div className="ml-3 text-sm">
-                      <label
-                        htmlFor="remember"
-                        className="text-gray-500 dark:text-gray-300"
-                      >
-                        Remember me
-                      </label>
-                    </div>
-                  </div>
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-                <button type="submit" className="w-full ">
-                  Sign in
+                <button
+                  type="submit"
+                  className={`w-full bg-primary-600 text-white p-2 rounded-lg ${
+                    loading ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  disabled={loading}
+                >
+                  {loading ? "Signing in..." : "Sign in"}
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet?{" "}
-                  <a
+                  <span
                     onClick={handleSignUpLink}
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500 hover:cursor-pointer"
                   >
                     Sign up
-                  </a>
+                  </span>
                 </p>
-              </htmlForm>
+              </form>
             </div>
           </div>
         </div>

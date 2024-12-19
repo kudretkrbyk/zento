@@ -6,23 +6,34 @@ import {
 } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
-import Main from "./Components/Pages/Main";
+import Main from "./Pages/Main";
 import BlogDetail from "./Pages/BlogDetail";
-import LogIn from "./Components/Pages/LogIn";
-import SignUp from "./Components/Pages/SignUp";
+import LogIn from "./Pages/LogIn";
+import SignUp from "./Pages/SignUp";
+import { AuthProvider } from "./context/AuthContext";
+import PrivateRoute from "./Components/PrivateRoute";
 
 function App() {
   return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/logIn" element={<LogIn />} />
-          <Route path="/signUp" element={<SignUp />} />
-          <Route path="/blogs/:id" element={<BlogDetail />} />
-        </Routes>
-      </Layout>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/logIn" element={<LogIn />} />
+            <Route path="/signUp" element={<SignUp />} />
+            <Route
+              path="/blogs/:id"
+              element={
+                <PrivateRoute>
+                  <BlogDetail />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </Layout>
+      </Router>
+    </AuthProvider>
   );
 }
 

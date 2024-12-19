@@ -1,12 +1,21 @@
-import { useNavigate } from "react-router-dom"; // Yönlendirme için import
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { TiThMenuOutline } from "react-icons/ti";
 
 export default function Navbar() {
-  const navigate = useNavigate(); // Yönlendirme hook'u
+  const { user, logOut } = useAuth(); // AuthContext'ten user ve logOut'u al
+  const navigate = useNavigate();
+
   const handleLogInLink = () => {
     navigate("/logIn");
   };
+
+  const handleLogOut = async () => {
+    await logOut(); // Kullanıcı çıkışı
+    navigate("/"); // Çıkış sonrası ana sayfaya yönlendirme
+  };
+
   return (
     <div className="w-full p-10">
       <div className="w-full flex items-center justify-between bg-white rounded-full h-24 shadow-l border overflow-hidden px-10">
@@ -22,11 +31,17 @@ export default function Navbar() {
             <button className=" p-2 px-4 ">Subscribe</button>
           </div>
           <div>
-            <button onClick={handleLogInLink} className=" p-2 px-4 ">
-              Log-In
-            </button>
+            {user ? ( // Kullanıcı giriş yapmışsa
+              <button onClick={handleLogOut} className=" p-2 px-4 ">
+                Log-Out
+              </button>
+            ) : (
+              // Kullanıcı giriş yapmamışsa
+              <button onClick={handleLogInLink} className=" p-2 px-4 ">
+                Log-In
+              </button>
+            )}
           </div>
-
           <div>
             <TiThMenuOutline className="size-5" />
           </div>
