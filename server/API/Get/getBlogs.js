@@ -2,7 +2,7 @@ const express = require("express");
 const pool = require("../../config/db");
 const router = express.Router();
 
-// Tüm blogları kategori adı ile getir
+// Tüm blogları kategori adı ve kullanıcı bilgileri ile getir
 router.get("/blogs", async (req, res) => {
   try {
     const query = `
@@ -14,9 +14,12 @@ router.get("/blogs", async (req, res) => {
         blog_posts.foto2, 
         blog_posts.metin1, 
         blog_posts.metin2, 
-        blog_posts.created_at
+        blog_posts.created_at,
+        users.isim AS yazar_adi, 
+        users.fotoğraf AS yazar_foto
       FROM blog_posts
       LEFT JOIN categories ON blog_posts.kategori_id = categories.id
+      LEFT JOIN users ON blog_posts.user_id = users.id
       ORDER BY blog_posts.created_at DESC
     `;
     const result = await pool.query(query);
@@ -27,7 +30,7 @@ router.get("/blogs", async (req, res) => {
   }
 });
 
-// Tek bir blogu kategori adı ile getir
+// Tek bir blogu kategori adı ve kullanıcı bilgileri ile getir
 router.get("/blogs/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -40,9 +43,12 @@ router.get("/blogs/:id", async (req, res) => {
         blog_posts.foto2, 
         blog_posts.metin1, 
         blog_posts.metin2, 
-        blog_posts.created_at
+        blog_posts.created_at,
+        users.isim AS yazar_adi, 
+        users.fotoğraf AS yazar_foto
       FROM blog_posts
       LEFT JOIN categories ON blog_posts.kategori_id = categories.id
+      LEFT JOIN users ON blog_posts.user_id = users.id
       WHERE blog_posts.id = $1
     `;
     const result = await pool.query(query, [id]);

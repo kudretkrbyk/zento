@@ -51,7 +51,9 @@ export default function BlogList() {
           </div>
 
           <div className="flex flex-col gap-5 items-start justify-center">
-            <h2 className="text-xl font-semibold">{blog.baslik}</h2>
+            <h2 className="text-xl font-semibold hover:underline hover:cursor-pointer">
+              {blog.baslik}
+            </h2>
             <p className="text-gray-700">
               {blog.metin1.split(" ").slice(0, 20).join(" ")}...
             </p>
