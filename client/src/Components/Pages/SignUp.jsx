@@ -1,4 +1,10 @@
+import { useNavigate } from "react-router-dom"; // Yönlendirme için import
+
 export default function SignUp() {
+  const navigate = useNavigate(); // Yönlendirme hook'u
+  const handleLogInLink = () => {
+    navigate("/logIn");
+  };
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -91,8 +97,8 @@ export default function SignUp() {
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account?{" "}
                   <a
-                    href="#"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    onClick={handleLogInLink}
+                    className="font-medium text-primary-600 hover:underline dark:text-primary-500 hover:cursor-pointer"
                   >
                     Login here
                   </a>

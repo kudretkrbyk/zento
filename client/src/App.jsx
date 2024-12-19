@@ -35,11 +35,11 @@ function Layout({ children }) {
   const shouldHide = hiddenRoutes.includes(location.pathname);
 
   return (
-    <>
+    <div>
       {!shouldHide && <Navbar />}
       {children}
       {!shouldHide && <Footer />}
-    </>
+    </div>
   );
 }
 
