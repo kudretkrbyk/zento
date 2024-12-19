@@ -10,6 +10,9 @@ export default function Navbar() {
   const handleLogInLink = () => {
     navigate("/logIn");
   };
+  const handleMainLink = () => {
+    navigate("/");
+  };
   const handleUserPageLink = () => {
     console.log("fonk");
     console.log(user);
@@ -33,7 +36,10 @@ export default function Navbar() {
           </div>
           <div>Quick Search...</div>
         </div>
-        <div className="w-44 h-24 bg-contain bg-no-repeat bg-center bg-[url(https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2024/03/logo-zento-personal-1.png)] "></div>
+        <div
+          onClick={handleMainLink}
+          className="w-44 h-24 bg-contain bg-no-repeat bg-center bg-[url(https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2024/03/logo-zento-personal-1.png)] hover:cursor-pointer "
+        ></div>
         <div className="flex items-center justify-center gap-2">
           <div>
             <button onClick={handleLogOut} className=" p-2 px-4 ">

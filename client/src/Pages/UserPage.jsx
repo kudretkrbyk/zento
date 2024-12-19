@@ -11,9 +11,9 @@ export default function UserPage() {
 
   return (
     <div className="p-10">
-      <h1 className="text-2xl font-bold">Welcome, {user.name}!</h1>
+      <h1 className="text-2xl font-bold">Welcome, {user.isim}!</h1>
       <p>Email: {user.email}</p>
-      <p>Role: {user.role}</p>
+      <p>Role: {user.rol}</p>
       <img
         src={user.foto}
         alt="User Avatar"
