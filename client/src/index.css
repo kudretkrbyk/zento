@@ -21,6 +21,12 @@
     }
   }
 
+  #root, main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
 /* Tailwind dışında global bir stil tanımlamak gerekiyorsa */
 button {
   background-color: #ff6480;

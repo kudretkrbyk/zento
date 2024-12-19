@@ -1,19 +1,19 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
-import LetsConnect from "./Components/LetsConnect";
-import TrendingTopics from "./Components/TrendingTopics";
 import Footer from "./Components/Footer";
-import BlogMain from "./Components/BlogMain";
-import JoinToCommunity from "./Components/JoinToCommunity";
+import Main from "./Components/Pages/Main";
+import BlogDetail from "./Pages/BlogDetail";
 
 function App() {
   return (
-    <div className="bg-[#fff4f5] w-full h-full">
+    <Router>
       <Navbar></Navbar>
-      <LetsConnect></LetsConnect>
-      <TrendingTopics></TrendingTopics>
-      <BlogMain></BlogMain> <JoinToCommunity></JoinToCommunity>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/blogs/:id" element={<BlogDetail />} />
+      </Routes>
       <Footer></Footer>
-    </div>
+    </Router>
   );
 }
 

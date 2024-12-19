@@ -5,8 +5,8 @@ import { FaTiktok } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 py-8 p-20">
-      <div className=" grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <footer className="w-full h-full bg-gray-100 py-8 p-20 mt-auto  ">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Social Links */}
         <SocialLinks />
 
@@ -100,7 +100,7 @@ function SocialLinks() {
   ];
 
   return (
-    <section className="widget widget_epcl_social">
+    <section className="widget widget_epcl_social ">
       <h3 className="widget-title text-lg font-semibold text-gray-800 border-b pb-2 mb-4">
         Follow me!
       </h3>
@@ -135,7 +135,7 @@ function QuickLinks() {
   ];
 
   return (
-    <section className="widget widget_nav_menu">
+    <section className="widget widget_nav_menu ">
       <h3 className="widget-title text-lg font-semibold text-gray-800 border-b pb-2 mb-4">
         Quick Links
       </h3>
@@ -154,7 +154,7 @@ function QuickLinks() {
 
 function SubscribeForm() {
   return (
-    <section className="widget widget_epcl_subscribe_form">
+    <section className="widget widget_epcl_subscribe_form ">
       <div className="widget_text">
         <div className="textwidget">
           <div className="logo mb-4">

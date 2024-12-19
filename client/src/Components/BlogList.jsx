@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useGetBlogs } from "../hooks/useGetBlogs";
+import { useNavigate } from "react-router-dom"; // Yönlendirme için import
 
 export default function BlogList() {
   const { blogs, error, isLoading, isError } = useGetBlogs();
   const [currentPage, setCurrentPage] = useState(1); // Mevcut sayfa numarası
   const blogsPerPage = 5; // Sayfa başına gösterilecek blog sayısı
+  const navigate = useNavigate(); // Yönlendirme hook'u
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -15,7 +17,7 @@ export default function BlogList() {
       </div>
     );
   }
-  console.log("blogs", blogs);
+
   // Sayfalama için veriyi bölme
   const indexOfLastBlog = currentPage * blogsPerPage; // Sayfadaki son blogun indeksi
   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage; // Sayfadaki ilk blogun indeksi
@@ -50,14 +52,17 @@ export default function BlogList() {
             {blog.kategori}
           </div>
 
-          <div className="w-full h-48 flex flex-col gap-5 items-start justify-around ">
-            <h2 className="text-xl font-semibold hover:underline hover:cursor-pointer">
+          <div className="w-full h-48 flex flex-col gap-5 items-start justify-around">
+            <h2
+              className="text-xl font-semibold hover:underline hover:cursor-pointer"
+              onClick={() => navigate(`/blogs/${blog.id}`)} // Tıklandığında yönlendir
+            >
               {blog.baslik}
             </h2>
             <p className="text-gray-700">
               {blog.metin1.split(" ").slice(0, 20).join(" ")}...
             </p>{" "}
-            <div className="w-full flex items-center justify-end gap-2 ">
+            <div className="w-full flex items-center justify-end gap-2">
               <img
                 src={blog.yazar_foto}
                 alt={`${blog.yazar_adi} Fotoğraf`}
