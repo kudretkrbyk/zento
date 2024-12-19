@@ -15,7 +15,7 @@ export default function BlogList() {
       </div>
     );
   }
-
+  console.log("blogs", blogs);
   // Sayfalama için veriyi bölme
   const indexOfLastBlog = currentPage * blogsPerPage; // Sayfadaki son blogun indeksi
   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage; // Sayfadaki ilk blogun indeksi
