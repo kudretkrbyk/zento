@@ -40,9 +40,10 @@ router.post("/login", async (req, res) => {
       message: "Giriş başarılı",
       user: {
         id: user.id,
-        name: user.name,
+        isim: user.isim,
         email: user.email,
         role: user.role,
+        foto: user.fotograf,
       }, // Kullanıcı bilgilerini döndür
     });
   } catch (error) {

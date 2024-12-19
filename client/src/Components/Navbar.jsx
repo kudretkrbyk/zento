@@ -10,6 +10,14 @@ export default function Navbar() {
   const handleLogInLink = () => {
     navigate("/logIn");
   };
+  const handleUserPageLink = () => {
+    console.log("fonk");
+    console.log(user);
+    if (user && user.isim) {
+      console.log("if");
+      navigate(`/user/${user.isim}`); // Kullanıcının kendi sayfasına yönlendirme
+    }
+  };
 
   const handleLogOut = async () => {
     await logOut(); // Kullanıcı çıkışı
@@ -28,14 +36,22 @@ export default function Navbar() {
         <div className="w-44 h-24 bg-contain bg-no-repeat bg-center bg-[url(https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2024/03/logo-zento-personal-1.png)] "></div>
         <div className="flex items-center justify-center gap-2">
           <div>
-            <button className=" p-2 px-4 ">Subscribe</button>
+            <button onClick={handleLogOut} className=" p-2 px-4 ">
+              Subscribe
+            </button>
           </div>
           <div>
             {user ? ( // Kullanıcı giriş yapmışsa
-              <button onClick={handleLogOut} className=" p-2 px-4 ">
-                Log-Out
-              </button>
+              <img
+                className="w-10 h-10 rounded-full hover:cursor-pointer"
+                src={user.foto}
+                alt="User Avatar"
+                onClick={handleUserPageLink} // Fotoğrafa tıklayınca yönlendirme
+              />
             ) : (
+              // <button onClick={handleLogOut} className=" p-2 px-4 ">
+              //   Log-Out
+              // </button>
               // Kullanıcı giriş yapmamışsa
               <button onClick={handleLogInLink} className=" p-2 px-4 ">
                 Log-In

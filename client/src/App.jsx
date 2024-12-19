@@ -10,6 +10,7 @@ import Main from "./Pages/Main";
 import BlogDetail from "./Pages/BlogDetail";
 import LogIn from "./Pages/LogIn";
 import SignUp from "./Pages/SignUp";
+import UserPage from "./Pages/UserPage";
 import { AuthProvider } from "./context/AuthContext";
 import PrivateRoute from "./Components/PrivateRoute";
 
@@ -27,6 +28,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <BlogDetail />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/user/:isim"
+              element={
+                <PrivateRoute>
+                  <UserPage />
                 </PrivateRoute>
               }
             />

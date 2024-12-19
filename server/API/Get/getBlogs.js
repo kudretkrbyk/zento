@@ -16,7 +16,7 @@ router.get("/blogs", async (req, res) => {
         blog_posts.metin2, 
         blog_posts.created_at,
         users.isim AS yazar_adi, 
-        users.fotoğraf AS yazar_foto
+        users.fotograf AS yazar_foto
       FROM blog_posts
       LEFT JOIN categories ON blog_posts.kategori_id = categories.id
       LEFT JOIN users ON blog_posts.user_id = users.id
