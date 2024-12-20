@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
         isim: user.isim,
         email: user.email,
         role: user.role,
-        foto: user.fotograf,
+        fotograf: user.fotograf,
       }, // Kullanıcı bilgilerini döndür
     });
   } catch (error) {
