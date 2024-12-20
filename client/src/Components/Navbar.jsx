@@ -50,7 +50,7 @@ export default function Navbar() {
             {user ? ( // Kullanıcı giriş yapmışsa
               <img
                 className="w-10 h-10 rounded-full hover:cursor-pointer"
-                src={user.foto}
+                src={user.fotograf}
                 alt="User Avatar"
                 onClick={handleUserPageLink} // Fotoğrafa tıklayınca yönlendirme
               />

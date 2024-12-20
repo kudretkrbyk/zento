@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
       }
     };
     checkAuthStatus();
+    console.log("AuthContext useEffect çalıştı", user);
   }, []);
 
   // Kullanıcı giriş fonksiyonu
@@ -32,8 +33,7 @@ export const AuthProvider = ({ children }) => {
         { email, password },
         { withCredentials: true } // HttpOnly cookie ayarı
       );
-      const userData = response.data.user;
-      setUser(userData); // Kullanıcı bilgilerini güncelle
+      setUser(response.data.user); // Kullanıcı bilgilerini güncelle
       return true;
     } catch (error) {
       console.error("Login failed:", error);
@@ -58,7 +58,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, logIn, logOut, loading }}>
+    <AuthContext.Provider value={{ user, setUser, logIn, logOut, loading }}>
       {children}
     </AuthContext.Provider>
   );

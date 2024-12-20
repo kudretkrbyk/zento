@@ -12,6 +12,7 @@ const logIn = require("./API/Post/logIn");
 const registerUser = require("./API/Post/register");
 const auth = require("./API/Get/auth");
 const logOut = require("./API/Post/logOut");
+const updateUser = require("./API/Post/updateUser");
 
 dotenv.config();
 
@@ -41,6 +42,7 @@ app.use("/api", postComment);
 app.use("/api", logIn);
 app.use("/api", registerUser);
 app.use("/api", logOut);
+app.use("/api", updateUser);
 // Ana Route
 app.get("/", (req, res) => {
   res.send("Blog API Server is running...");
