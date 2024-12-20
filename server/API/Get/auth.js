@@ -7,7 +7,7 @@ const authMiddleware = require("../../middleware");
 router.get("/auth", authMiddleware, async (req, res) => {
   try {
     const userQuery =
-      "SELECT id,email, isim, rol, fotograf FROM users WHERE id = $1";
+      "SELECT id,email, isim,  fotograf FROM users WHERE id = $1";
     const userResult = await pool.query(userQuery, [req.user.id]);
 
     if (userResult.rows.length === 0) {
