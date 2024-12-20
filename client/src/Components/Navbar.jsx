@@ -42,18 +42,22 @@ export default function Navbar() {
         ></div>
         <div className="flex items-center justify-center gap-2">
           <div>
-            <button onClick={handleLogOut} className=" p-2 px-4 ">
-              Subscribe
-            </button>
+            <button className=" p-2 px-4 ">Subscribe</button>
           </div>
           <div>
             {user ? ( // Kullanıcı giriş yapmışsa
-              <img
-                className="w-10 h-10 rounded-full hover:cursor-pointer"
-                src={user.fotograf}
-                alt="User Avatar"
-                onClick={handleUserPageLink} // Fotoğrafa tıklayınca yönlendirme
-              />
+              <div className="w-full  hover:cursor-pointer group">
+                {" "}
+                <img
+                  className="w-10 h-10 rounded-full "
+                  src={user.fotograf}
+                  alt="User Avatar"
+                />
+                <div className="hidden group-hover:flex absolute top-24 right-10 bg-white shadow-xl rounded-md  flex-col gap-10 p-10 ">
+                  <button onClick={handleLogOut}>Log-Out</button>
+                  <button onClick={handleUserPageLink}>Profile</button>
+                </div>
+              </div>
             ) : (
               // <button onClick={handleLogOut} className=" p-2 px-4 ">
               //   Log-Out

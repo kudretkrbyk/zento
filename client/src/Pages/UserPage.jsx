@@ -67,6 +67,10 @@ export default function UserPage() {
             className="border rounded p-2 w-[700px]"
           />
         </div>
+        <div className="w-full flex items-center justify-between">
+          <span>Profile Picture:</span>
+          <img className="w-20 h-20" src={user.fotograf}></img>
+        </div>
       </div>
     </div>
   );
