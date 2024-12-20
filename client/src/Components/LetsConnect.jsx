@@ -16,7 +16,10 @@ export default function LetsConnect() {
         <div className="w-full flex flex-col gap-2">
           <p>Let's Connect</p>
           <div className="bg-white border rounded flex items-center justify-between gap-2 w-full  p-2 h-16">
-            <input className="focus:outline-none px-12 w-full"></input>
+            <input
+              placeholder="Enter your email address"
+              className="focus:outline-none px-12 w-full"
+            ></input>
             <button className="w-2/12 text-nowrap">Get started</button>
           </div>
         </div>
