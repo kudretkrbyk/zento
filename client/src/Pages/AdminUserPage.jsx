@@ -1,59 +1,37 @@
 import { useGetUsers } from "../hooks/useGetUsers";
-import { useDeleteUser } from "../hooks/useDeleteUser";
-import { useAuth } from "../context/AuthContext";
 
 export default function AdminUserPage() {
-  const { user } = useAuth(); // Admin kontrolü
-  const { users, isLoading, error } = useGetUsers(); // Kullanıcıları getir
-  const {
-    deleteUser,
-    isLoading: deleting,
-    error: deleteError,
-  } = useDeleteUser(); // Kullanıcıyı sil
+  const { users, error, isLoading } = useGetUsers();
 
-  if (!user || user.role !== "admin") {
-    return <div>Unauthorized Access</div>; // Sadece admin erişebilir
+  if (isLoading) {
+    return <div>Loading users...</div>;
   }
 
-  if (isLoading) return <p>Loading users...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (error) {
+    return <div>Error loading users: {error.message}</div>;
+  }
+
+  if (!users || !users.users || users.users.length === 0) {
+    return <div>No users found.</div>;
+  }
 
   return (
-    <div className="p-10">
-      <h1 className="text-2xl font-bold mb-4">User Management</h1>
-      {deleteError && <p className="text-red-500">{deleteError}</p>}
-      <table className="w-full border-collapse border border-gray-300">
-        <thead>
-          <tr>
-            <th className="border border-gray-300 p-2">Name</th>
-            <th className="border border-gray-300 p-2">Photo</th>
-            <th className="border border-gray-300 p-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users?.map((user) => (
-            <tr key={user.id}>
-              <td className="border border-gray-300 p-2">{user.isim}</td>
-              <td className="border border-gray-300 p-2">
-                <img
-                  src={user.fotograf}
-                  alt="User Avatar"
-                  className="w-10 h-10 rounded-full"
-                />
-              </td>
-              <td className="border border-gray-300 p-2">
-                <button
-                  onClick={() => deleteUser(user.id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded"
-                  disabled={deleting}
-                >
-                  {deleting ? "Deleting..." : "Delete"}
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="w-full p-10">
+      <h1 className="text-2xl font-bold mb-4">Admin Users</h1>
+      <ul className="list-disc pl-5">
+        {users.users.map((user) => (
+          <li key={user.id} className="mb-2">
+            <div className="flex items-center gap-4">
+              <img
+                src={user.fotograf}
+                alt={user.isim}
+                className="w-10 h-10 rounded-full"
+              />
+              <span>{user.isim}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

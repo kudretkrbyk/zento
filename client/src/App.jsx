@@ -42,7 +42,7 @@ function App() {
               }
             />
             <Route
-              path="/adminPage"
+              path="/admin"
               element={
                 <RoleBasedRoute allowedRoles={["admin"]}>
                   <AdminUserPage />

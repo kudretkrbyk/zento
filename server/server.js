@@ -13,6 +13,10 @@ const registerUser = require("./API/Post/register");
 const auth = require("./API/Get/auth");
 const logOut = require("./API/Post/logOut");
 const updateUser = require("./API/Post/updateUser");
+const getUsers = require("./API/Get/getUsers");
+const adminRoutes = require("./API/Admin/adminRoutes");
+const authMiddleware = require("./middleware/middleware");
+const isAdmin = require("./middleware/isAdmin");
 
 dotenv.config();
 
@@ -25,7 +29,7 @@ app.use(cors(corsOptions));
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({ credentials: true, origin: "http://localhost:5174" })); // CORS ayarları
+
 app.use(express.json());
 app.use(cookieParser()); // Cookie-parser middleware
 
@@ -35,6 +39,7 @@ app.use("/api", getComment);
 app.use("/api", getCategories);
 app.use("/api", getUser);
 app.use("/api", auth);
+app.use("/api/admin", authMiddleware, isAdmin, adminRoutes); // Admin rotaları
 
 // API Post Routes
 app.use("/api", postBlogs);

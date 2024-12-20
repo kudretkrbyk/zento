@@ -12,17 +12,19 @@ export const AuthProvider = ({ children }) => {
     const checkAuthStatus = async () => {
       try {
         const response = await axios.get("http://localhost:5000/api/auth", {
-          withCredentials: true, // HttpOnly cookie gönderilir
+          withCredentials: true,
         });
-        setUser(response.data.user); // Kullanıcı bilgilerini ayarla
+        console.log("AuthContext - response.data.user:", response.data.user);
+        setUser(response.data.user); // Kullanıcı bilgilerini ayarlamaya çalışıyoruz
       } catch (error) {
-        setUser(null); // Kullanıcı oturum açmamış
+        console.error("AuthContext - Hata:", error);
+        setUser(null); // Kullanıcı yoksa null ayarla
       } finally {
         setLoading(false); // Yükleme tamamlandı
       }
     };
     checkAuthStatus();
-    console.log("AuthContext useEffect çalıştı", user);
+    console.log("AuthContext - user state:", user); // setUser sonrası user kontrolü
   }, []);
 
   // Kullanıcı giriş fonksiyonu

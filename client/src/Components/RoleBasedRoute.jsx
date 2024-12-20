@@ -2,10 +2,15 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const RoleBasedRoute = ({ children, allowedRoles }) => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  console.log("RoleBasedRoute user:", user);
 
-  if (!user || !allowedRoles.includes(user.role)) {
-    return <Navigate to="/logIn" />;
+  if (loading) {
+    return <div>Loading...</div>; // Bekleme durumu
+  }
+
+  if (!user || !allowedRoles.includes(user.rol ? "admin" : "user")) {
+    return <Navigate to="/logIn" replace />;
   }
 
   return children;

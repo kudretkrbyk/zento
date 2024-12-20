@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../../config/db");
 
-const authMiddleware = require("../../middleware");
+const authMiddleware = require("../../middleware/middleware");
 
 router.get("/auth", authMiddleware, async (req, res) => {
   try {
     const userQuery =
-      "SELECT id,email, isim,  fotograf FROM users WHERE id = $1";
+      "SELECT id,email, isim,  fotograf, rol FROM users WHERE id = $1";
     const userResult = await pool.query(userQuery, [req.user.id]);
 
     if (userResult.rows.length === 0) {
