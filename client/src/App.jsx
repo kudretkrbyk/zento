@@ -11,8 +11,10 @@ import BlogDetail from "./Pages/BlogDetail";
 import LogIn from "./Pages/LogIn";
 import SignUp from "./Pages/SignUp";
 import UserPage from "./Pages/UserPage";
+import AdminUserPage from "./Pages/AdminUserPage";
 import { AuthProvider } from "./context/AuthContext";
 import PrivateRoute from "./Components/PrivateRoute";
+import RoleBasedRoute from "./Components/RoleBasedRoute";
 
 function App() {
   return (
@@ -37,6 +39,14 @@ function App() {
                 <PrivateRoute>
                   <UserPage />
                 </PrivateRoute>
+              }
+            />
+            <Route
+              path="/adminPage"
+              element={
+                <RoleBasedRoute allowedRoles={["admin"]}>
+                  <AdminUserPage />
+                </RoleBasedRoute>
               }
             />
           </Routes>
