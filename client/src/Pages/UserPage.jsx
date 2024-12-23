@@ -29,7 +29,7 @@ export default function UserPage() {
       setUser(updatedUser); // Kullanıcı bilgilerini güncelle
     }
   };
-
+  console.log("user", user);
   return (
     <div className="w-2/3 h-full flex flex-col gap-10 p-10 items-center justify-center  ">
       <div className="w-full flex items-center justify-between gap-10">

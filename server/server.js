@@ -2,21 +2,11 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const getBlogs = require("./API/Get/getBlogs");
-const postBlogs = require("./API/Post/postBlogs");
-const getCategories = require("./API/Get/getCategories");
-const getComment = require("./API/Get/getComment");
-const postComment = require("./API/Post/postComment");
-const getUser = require("./API/Get/getUser");
-const logIn = require("./API/Post/logIn");
-const registerUser = require("./API/Post/register");
-const auth = require("./API/Get/auth");
-const logOut = require("./API/Post/logOut");
-const updateUser = require("./API/Post/updateUser");
-const getUsers = require("./API/Get/getUsers");
-const adminRoutes = require("./API/Admin/adminRoutes");
-const authMiddleware = require("./middleware/middleware");
-const isAdmin = require("./middleware/isAdmin");
+const blogRoutes = require("./routes/blogRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
+const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 dotenv.config();
 
@@ -32,22 +22,15 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cookieParser()); // Cookie-parser middleware
+app.use(express.urlencoded({ extended: true }));
 
-// API Get Routes
-app.use("/api", getBlogs);
-app.use("/api", getComment);
-app.use("/api", getCategories);
-app.use("/api", getUser);
-app.use("/api", auth);
-app.use("/api/admin", authMiddleware, isAdmin, adminRoutes); // Admin rotaları
+app.use("/api", blogRoutes); // Blog rotaları
+app.use("/api", categoryRoutes); // Kategori rotaları
+app.use("/api", userRoutes); // Kullanıcı rotaları
+app.use("/api", authRoutes); // Auth rotaları
 
-// API Post Routes
-app.use("/api", postBlogs);
-app.use("/api", postComment);
-app.use("/api", logIn);
-app.use("/api", registerUser);
-app.use("/api", logOut);
-app.use("/api", updateUser);
+app.use("/api", adminRoutes); // Admin rotaları
+
 // Ana Route
 app.get("/", (req, res) => {
   res.send("Blog API Server is running...");
