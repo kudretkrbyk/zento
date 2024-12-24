@@ -13,7 +13,7 @@ const RoleBasedWrapper = ({
   }
 
   if (!user || !allowedRoles.includes(user.rol ? "admin" : "user")) {
-    return <Navigate to={redirectTo} replace />;
+    return <div>Yetkisiz eşirim</div>;
   }
 
   return children;

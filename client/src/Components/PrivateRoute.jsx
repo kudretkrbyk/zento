@@ -8,7 +8,7 @@ const PrivateRoute = ({ children }) => {
   }
 
   if (!user) {
-    return <Navigate to="/logIn" />; // Giriş yapılmadıysa logIn sayfasına yönlendir
+    return <div>Lütfen giriş yapınız</div>; // Giriş yapılmadıysa logIn sayfasına yönlendir
   }
 
   return children; // Giriş yapıldıysa içeriği göster
