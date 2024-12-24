@@ -15,6 +15,7 @@ import AdminUserPage from "./Pages/AdminUserPage";
 import { AuthProvider } from "./context/AuthContext";
 import PrivateRoute from "./Components/PrivateRoute";
 import RoleBasedRoute from "./Components/RoleBasedRoute";
+import RoleBasedWrapper from "./Components/RoleBasedWrapper";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
       <Router>
         <Layout>
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path="/*" element={<Main />} />
+            <Route path="/Home" element={<Main />} />
             <Route path="/logIn" element={<LogIn />} />
             <Route path="/signUp" element={<SignUp />} />
             <Route
@@ -44,9 +46,9 @@ function App() {
             <Route
               path="/admin"
               element={
-                <RoleBasedRoute allowedRoles={["admin"]}>
+                <RoleBasedWrapper allowedRoles={["admin"]}>
                   <AdminUserPage />
-                </RoleBasedRoute>
+                </RoleBasedWrapper>
               }
             />
           </Routes>

@@ -16,6 +16,7 @@ const getUser = async (req, res) => {
     }
 
     res.json({ user: userResult.rows[0] });
+    console.log("get user çalıştı");
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error." });
@@ -24,6 +25,7 @@ const getUser = async (req, res) => {
 
 // Tüm kullanıcıları listele (Admin haricindeki kullanıcılar)
 const getUsers = async (req, res) => {
+  console.log("get user çalıştı");
   try {
     const query = `
       SELECT id, isim, fotograf 
@@ -32,6 +34,7 @@ const getUsers = async (req, res) => {
     `;
     const result = await pool.query(query);
     res.json(result.rows);
+    console.log("get users çalıştı", result.rows);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error." });

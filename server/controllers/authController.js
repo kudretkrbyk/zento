@@ -5,6 +5,7 @@ const pool = require("../config/db");
 
 // Kullanıcı giriş işlemi
 const logIn = async (req, res) => {
+  console.log("login çalıştı");
   const { email, password } = req.body;
 
   try {
@@ -41,7 +42,7 @@ const logIn = async (req, res) => {
         id: user.id,
         isim: user.isim,
         email: user.email,
-        role: user.role,
+        rol: user.rol,
         fotograf: user.fotograf,
       },
     });

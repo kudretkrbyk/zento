@@ -24,7 +24,7 @@ export default function Navbar() {
 
   const handleLogOut = async () => {
     await logOut(); // Kullanıcı çıkışı
-    navigate("/"); // Çıkış sonrası ana sayfaya yönlendirme
+    navigate("/Home"); // Çıkış sonrası ana sayfaya yönlendirme
   };
 
   return (

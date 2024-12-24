@@ -1,7 +1,9 @@
+import AdminUserPage from "./AdminUserPage";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useUpdateUser } from "../hooks/useUpdateUser";
 import { useState } from "react";
+import RoleBasedWrapper from "../Components/RoleBasedWrapper";
 
 export default function UserPage() {
   const { isim } = useParams();
@@ -30,6 +32,7 @@ export default function UserPage() {
     }
   };
   console.log("user", user);
+
   return (
     <div className="w-2/3 h-full flex flex-col gap-10 p-10 items-center justify-center  ">
       <div className="w-full flex items-center justify-between gap-10">
@@ -72,6 +75,11 @@ export default function UserPage() {
           <img className="w-20 h-20" src={user.fotograf}></img>
         </div>
       </div>
+      {user.rol === true && (
+        <RoleBasedWrapper allowedRoles={["admin"]}>
+          <AdminUserPage />
+        </RoleBasedWrapper>
+      )}
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useGetUsers } from "../hooks/useGetUsers";
 
 export default function AdminUserPage() {
   const { users, error, isLoading } = useGetUsers();
+  console.log("AdminUserPage - users:", users);
 
   if (isLoading) {
     return <div>Loading users...</div>;
@@ -11,7 +12,7 @@ export default function AdminUserPage() {
     return <div>Error loading users: {error.message}</div>;
   }
 
-  if (!users || !users.users || users.users.length === 0) {
+  if (!users) {
     return <div>No users found.</div>;
   }
 
@@ -19,7 +20,7 @@ export default function AdminUserPage() {
     <div className="w-full p-10">
       <h1 className="text-2xl font-bold mb-4">Admin Users</h1>
       <ul className="list-disc pl-5">
-        {users.users.map((user) => (
+        {users.map((user) => (
           <li key={user.id} className="mb-2">
             <div className="flex items-center gap-4">
               <img

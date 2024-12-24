@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const pool = require("../config/db");
 
 const authMiddleware = async (req, res, next) => {
+  console.log("authMiddleware çalıştı");
   const token = req.cookies.token; // Çerezdeki token'ı al
 
   if (!token) {
