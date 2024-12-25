@@ -1,26 +1,31 @@
-import { useState } from "react";
-import { useGetBlogs } from "../hooks/useGetBlogs";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchBlogs } from "../features/blogs/blogsSlice";
 import { useNavigate } from "react-router-dom"; // Yönlendirme için import
 
 export default function BlogList() {
-  const { blogs, error, isLoading, isError } = useGetBlogs();
+  const dispatch = useDispatch();
+  const { blogs, loading, error } = useSelector((state) => state.blogs); // Redux state
   const [currentPage, setCurrentPage] = useState(1); // Mevcut sayfa numarası
   const blogsPerPage = 5; // Sayfa başına gösterilecek blog sayısı
   const navigate = useNavigate(); // Yönlendirme hook'u
+  useEffect(() => {
+    dispatch(fetchBlogs()); // Blogları RTK üzerinden getir
+  }, [dispatch]);
   const handleBlogClick = (blog) => {
     navigate(`/blogs/${blog.id}`, { state: blog }); // Blog bilgilerini state ile aktar
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (loading) return <div>Loading...</div>;
 
-  if (isError) {
+  if (error) {
     return (
       <div className="text-red-500">
         Hata: {error.message || "Bir hata oluştu, lütfen tekrar deneyin."}
       </div>
     );
   }
-
+  console.log("blog list", blogs);
   // Sayfalama için veriyi bölme
   const indexOfLastBlog = currentPage * blogsPerPage; // Sayfadaki son blogun indeksi
   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage; // Sayfadaki ilk blogun indeksi

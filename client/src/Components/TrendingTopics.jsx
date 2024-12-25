@@ -1,12 +1,21 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCategories } from "../features/categories/categoriesSlice";
+
 import { IoFlashSharp } from "react-icons/io5";
-import { useGetCategories } from "../hooks/useGetCategories";
 
 export default function TrendingTopics() {
-  const { categories, error, isLoading, isError } = useGetCategories();
-  console.log("categories", categories);
-  if (isLoading) return <div>Loading...</div>;
+  const dispatch = useDispatch();
+  const { categories, loading, error } = useSelector(
+    (state) => state.categories
+  ); // Redux state
+  useEffect(() => {
+    dispatch(fetchCategories()); // Blogları RTK üzerinden getir
+  }, [dispatch]);
 
-  if (isError) {
+  if (loading) return <div>Loading...</div>;
+
+  if (error) {
     return (
       <div className="text-red-500">
         Hata: {error.message || "Bir hata oluştu, lütfen tekrar deneyin."}
