@@ -1,12 +1,15 @@
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Provider } from "react-redux";
 import { store } from "./app/store"; // Redux Store
+import { checkAuthStatus } from "./features/auth/authSlice";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Main from "./Pages/Main";
@@ -17,7 +20,6 @@ import UserPage from "./Pages/UserPage";
 import AdminUserPage from "./Pages/AdminUserPage";
 
 import PrivateRoute from "./Components/PrivateRoute";
-
 import RoleBasedWrapper from "./Components/RoleBasedWrapper";
 
 function App() {
@@ -64,11 +66,26 @@ function App() {
 // Layout bileşeni
 function Layout({ children }) {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.auth);
+
+  // Kullanıcı durumunu başlangıçta kontrol et
+  useEffect(() => {
+    dispatch(checkAuthStatus());
+  }, [dispatch]);
 
   // Navbar ve Footer'ın görünmeyeceği rotalar
   const hiddenRoutes = ["/logIn", "/signUp"];
-
   const shouldHide = hiddenRoutes.includes(location.pathname);
+
+  // Yükleme durumu veya hata durumlarını ele alma
+  if (loading) {
+    return <div>Loading...</div>; // Yükleme ekranı
+  }
+
+  if (error) {
+    return <div className="text-red-500">Error: {error}</div>; // Hata mesajı
+  }
 
   return (
     <div>
