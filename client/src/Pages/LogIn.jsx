@@ -1,19 +1,25 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { logIn } from "../features/auth/authSlice";
 
 export default function LogIn() {
   const navigate = useNavigate();
-  const { logIn, error, loading } = useContext(AuthContext); // AuthContext'ten logIn fonksiyonunu alıyoruz
+  const dispatch = useDispatch();
+  const { error, loading, user } = useSelector((state) => state.auth);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const success = await logIn(email, password); // AuthContext logIn fonksiyonunu çağır
-    if (success) {
-      navigate("/"); // Başarılı girişten sonra ana sayfaya yönlendir
+    // Redux Thunk ile giriş işlemi
+    const resultAction = await dispatch(logIn({ email, password }));
+
+    if (logIn.fulfilled.match(resultAction)) {
+      navigate("/"); // Başarılı giriş sonrası ana sayfaya yönlendir
+    } else {
+      console.error("Giriş işlemi başarısız:", resultAction.payload);
     }
   };
 

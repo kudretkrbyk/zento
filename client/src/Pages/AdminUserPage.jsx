@@ -1,9 +1,14 @@
-import { useGetUsers } from "../hooks/useGetUsers";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchUsers } from "../features/users/usersSlice";
 
 export default function AdminUserPage() {
-  const { users, error, isLoading } = useGetUsers();
+  const dispatch = useDispatch();
+  const { users, error, isLoading } = useSelector((state) => state.users);
   console.log("AdminUserPage - users:", users);
-
+  useEffect(() => {
+    dispatch(fetchUsers()); // Blogları RTK üzerinden getir
+  }, [dispatch]);
   if (isLoading) {
     return <div>Loading users...</div>;
   }

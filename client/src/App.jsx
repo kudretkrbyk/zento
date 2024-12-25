@@ -1,9 +1,12 @@
+import PropTypes from "prop-types";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./app/store"; // Redux Store
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Main from "./Pages/Main";
@@ -12,14 +15,14 @@ import LogIn from "./Pages/LogIn";
 import SignUp from "./Pages/SignUp";
 import UserPage from "./Pages/UserPage";
 import AdminUserPage from "./Pages/AdminUserPage";
-import { AuthProvider } from "./context/AuthContext";
+
 import PrivateRoute from "./Components/PrivateRoute";
-import RoleBasedRoute from "./Components/RoleBasedRoute";
+
 import RoleBasedWrapper from "./Components/RoleBasedWrapper";
 
 function App() {
   return (
-    <AuthProvider>
+    <Provider store={store}>
       <Router>
         <Layout>
           <Routes>
@@ -54,10 +57,11 @@ function App() {
           </Routes>
         </Layout>
       </Router>
-    </AuthProvider>
+    </Provider>
   );
 }
 
+// Layout bileşeni
 function Layout({ children }) {
   const location = useLocation();
 
@@ -74,5 +78,10 @@ function Layout({ children }) {
     </div>
   );
 }
+
+// PropTypes ile children doğrulaması
+Layout.propTypes = {
+  children: PropTypes.node.isRequired, // children bir React node olmalı
+};
 
 export default App;

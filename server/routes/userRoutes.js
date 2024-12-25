@@ -19,6 +19,6 @@ router.get("/users", authMiddleware, isAdmin, getUsers);
 router.post("/register", registerUser);
 
 // Kullanıcı bilgilerini güncelle
-router.patch("/update", authMiddleware, updateUser);
+router.patch("/users/:id", authMiddleware, updateUser);
 
 module.exports = router;

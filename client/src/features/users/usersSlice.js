@@ -4,6 +4,7 @@ import {
   getUserById,
   deleteUserById,
   updateUserById,
+  signUpUser, // signUp API işlemi
 } from "./usersAPI";
 
 // Tüm kullanıcıları getir
@@ -46,8 +47,21 @@ export const removeUserById = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   "users/updateById",
   async ({ id, userData }, thunkAPI) => {
+    console.log("userslices userData:", id, userData);
     try {
       return await updateUserById(id, userData);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+// Kullanıcı kaydı (signUp)
+export const signUp = createAsyncThunk(
+  "users/signUp",
+  async (userData, thunkAPI) => {
+    try {
+      return await signUpUser(userData);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
@@ -63,9 +77,10 @@ const usersSlice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {}, // Eğer ekstra reducers tanımlanacaksa buraya eklenir
+  reducers: {},
   extraReducers: (builder) => {
     builder
+      // Tüm kullanıcıları getir
       .addCase(fetchUsers.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -78,17 +93,33 @@ const usersSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      // Belirli bir kullanıcıyı getir
       .addCase(fetchUserById.fulfilled, (state, action) => {
         state.user = action.payload;
       })
+      // Kullanıcıyı sil
       .addCase(removeUserById.fulfilled, (state, action) => {
         state.users = state.users.filter((user) => user.id !== action.meta.arg);
       })
+      // Kullanıcıyı güncelle
       .addCase(updateUser.fulfilled, (state, action) => {
         const updatedUser = action.payload;
         state.users = state.users.map((user) =>
           user.id === updatedUser.id ? updatedUser : user
         );
+      })
+      // Kullanıcı kaydı (signUp)
+      .addCase(signUp.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(signUp.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users.push(action.payload); // Yeni kullanıcı ekle
+      })
+      .addCase(signUp.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

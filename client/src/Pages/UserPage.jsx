@@ -1,20 +1,32 @@
 import AdminUserPage from "./AdminUserPage";
 import { useParams } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { useUpdateUser } from "../hooks/useUpdateUser";
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { updateUser } from "../features/users/usersSlice";
+
 import RoleBasedWrapper from "../Components/RoleBasedWrapper";
 
 export default function UserPage() {
   const { isim } = useParams();
-  const { user, setUser } = useAuth(); // setUser artık kullanılabilir
-  const { updateUser, error, loading } = useUpdateUser();
+  const dispatch = useDispatch();
+  const { user, loading, error } = useSelector((state) => state.auth);
+  console.log("user page user:", user);
 
   const [formData, setFormData] = useState({
-    isim: user?.isim || "",
-    email: user?.email || "",
-    fotograf: user?.fotograf || "", // Sadece 'fotograf' alanını kullanıyoruz
+    isim: "",
+    email: "",
+    fotograf: "",
   });
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        isim: user.isim || "",
+        email: user.email || "",
+        fotograf: user.fotograf || "",
+      });
+    }
+  }, [user]);
 
   if (!user || user.isim !== isim) {
     return <div>Unauthorized Access</div>;
@@ -26,15 +38,20 @@ export default function UserPage() {
   };
 
   const handleUpdate = async () => {
-    const updatedUser = await updateUser(formData);
-    if (updatedUser) {
-      setUser(updatedUser); // Kullanıcı bilgilerini güncelle
+    console.log("formData:", formData, "user id:", user.id);
+    const resultAction = await dispatch(
+      updateUser({ id: user.id, userData: formData })
+    );
+
+    if (updateUser.fulfilled.match(resultAction)) {
+      console.log("User updated successfully:", resultAction.payload);
+    } else {
+      console.error("Update failed:", resultAction.payload);
     }
   };
-  console.log("user", user);
 
   return (
-    <div className="w-2/3 h-full flex flex-col gap-10 p-10 items-center justify-center  ">
+    <div className="w-2/3 h-full flex flex-col gap-10 p-10 items-center justify-center">
       <div className="w-full flex items-center justify-between gap-10">
         <h1 className="w-full text-2xl font-bold">Welcome, {user.isim}!</h1>
         <button onClick={handleUpdate} disabled={loading} className="">
@@ -64,7 +81,7 @@ export default function UserPage() {
         <div className="w-full flex items-center justify-between gap-10">
           <label className="border text-nowrap">Photo URL:</label>
           <input
-            name="fotograf" // 'foto' yerine 'fotograf' kullanılıyor
+            name="fotograf"
             value={formData.fotograf}
             onChange={handleChange}
             className="border rounded p-2 w-[700px]"
@@ -72,7 +89,7 @@ export default function UserPage() {
         </div>
         <div className="w-full flex items-center justify-between">
           <span>Profile Picture:</span>
-          <img className="w-20 h-20" src={user.fotograf}></img>
+          <img className="w-20 h-20" src={formData.fotograf} alt="Profile" />
         </div>
       </div>
       {user.rol === true && (

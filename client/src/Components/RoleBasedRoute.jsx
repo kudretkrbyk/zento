@@ -1,8 +1,10 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useSelector, useDispatch } from "react-redux";
 
 const RoleBasedRoute = ({ children, allowedRoles }) => {
-  const { user, loading } = useAuth();
+  const dispatch = useDispatch();
+  const { user, loading, error } = useSelector((state) => state.auth);
+
   console.log("RoleBasedRoute user:", user);
 
   if (loading) {

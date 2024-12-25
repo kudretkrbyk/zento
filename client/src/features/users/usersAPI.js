@@ -26,3 +26,9 @@ export const updateUserById = async (id, userData) => {
   const response = await api.patch(`${API_URL}/${id}`, userData);
   return response.data;
 };
+
+// Yeni kullanıcı oluştur (signUp)
+export const signUpUser = async (userData) => {
+  const response = await api.post("/register", userData);
+  return response.data;
+};

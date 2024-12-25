@@ -1,29 +1,30 @@
-import { useAuth } from "../context/AuthContext";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { TiThMenuOutline } from "react-icons/ti";
+import { logOut } from "../features/auth/authSlice";
 
 export default function Navbar() {
-  const { user, logOut } = useAuth(); // AuthContext'ten user ve logOut'u al
+  const { user, loading } = useSelector((state) => state.auth); // Redux'tan kullanıcı bilgileri
+  const dispatch = useDispatch(); // Redux Dispatch
   const navigate = useNavigate();
 
   const handleLogInLink = () => {
     navigate("/logIn");
   };
+
   const handleMainLink = () => {
     navigate("/");
   };
+
   const handleUserPageLink = () => {
-    console.log("fonk");
-    console.log(user);
     if (user && user.isim) {
-      console.log("if");
       navigate(`/user/${user.isim}`); // Kullanıcının kendi sayfasına yönlendirme
     }
   };
 
   const handleLogOut = async () => {
-    await logOut(); // Kullanıcı çıkışı
+    await dispatch(logOut()); // Redux Thunk ile çıkış işlemi
     navigate("/Home"); // Çıkış sonrası ana sayfaya yönlendirme
   };
 
@@ -46,23 +47,18 @@ export default function Navbar() {
           </div>
           <div>
             {user ? ( // Kullanıcı giriş yapmışsa
-              <div className="w-full  hover:cursor-pointer group">
-                {" "}
+              <div className="w-full hover:cursor-pointer group">
                 <img
-                  className="w-10 h-10 rounded-full "
+                  className="w-10 h-10 rounded-full"
                   src={user.fotograf}
                   alt="User Avatar"
                 />
-                <div className="hidden group-hover:flex absolute top-24 right-10 bg-white shadow-xl rounded-md  flex-col gap-10 p-10 ">
+                <div className="hidden group-hover:flex absolute top-24 right-10 bg-white shadow-xl rounded-md flex-col gap-10 p-10">
                   <button onClick={handleLogOut}>Log-Out</button>
                   <button onClick={handleUserPageLink}>Profile</button>
                 </div>
               </div>
             ) : (
-              // <button onClick={handleLogOut} className=" p-2 px-4 ">
-              //   Log-Out
-              // </button>
-              // Kullanıcı giriş yapmamışsa
               <button onClick={handleLogInLink} className=" p-2 px-4 ">
                 Log-In
               </button>
