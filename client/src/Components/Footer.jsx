@@ -5,7 +5,7 @@ import { FaTiktok } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer className="w-full h-full bg-gray-100 py-8 p-20 mt-auto  ">
+    <footer className="w-full h-full  py-8 p-20 mt-auto  ">
       <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Social Links */}
         <SocialLinks />
