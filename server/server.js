@@ -12,7 +12,7 @@ dotenv.config();
 
 const app = express();
 const corsOptions = {
-  origin: "http://localhost:5174", // Frontend'in çalıştığı URL
+  origin: "http://localhost:5173", // Frontend'in çalıştığı URL
   credentials: true, // HttpOnly cookie'leri kabul etmek için
 };
 app.use(cors(corsOptions));
