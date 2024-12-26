@@ -2,40 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Özel border-radius animasyonu */
-@layer utilities {
-    @keyframes morph-border {
-      0% {
-        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-      }
-      50% {
-        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-      }
-      100% {
-        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-      }
-    }
-  
-    .animate-border-morph {
-      animation: morph-border 15s ease-in-out infinite;
-    }
-  }
-
-  #root, main {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  body {
-    background-color:aliceblue;
-
-  }
-/* Tailwind dışında global bir stil tanımlamak gerekiyorsa */
-button {
-  background-color: #ff6480;
-  color: white;
-  padding: 10px;
-  padding-right: 20px;
-  padding-left: 20px;
-  border-radius: 5px;
+/* Global Root CSS Variables */
+:root {
+  --accent-color: #ff6480;
+  --decoration-color: #ff9f80;
+  --background-color: aliceblue;
 }
+
+/* Tailwind Global Customizations */
+body {
+  background-color: var(--background-color); /* Dinamik arka plan rengi */
+  font-family: 'Inter', sans-serif; /* Varsayılan font (isteğe bağlı) */
+}
+
+#root, main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Özel Border-Radius Animasyonu */
+@layer utilities {
+  @keyframes morph-border {
+    0% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    50% {
+      border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+    100% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+  }
+
+  .animate-border-morph {
+    animation: morph-border 15s ease-in-out infinite;
+  }
+}
+
+/* Global Button Style (Tailwind Overrides) */
+button {
+  background-color: var(--accent-color); /* Dinamik renk */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+
+  /* Hover efekti */
+  &:hover {
+    background-color: var(--decoration-color); /* İkinci renk */
+  }
+}
+

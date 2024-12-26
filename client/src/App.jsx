@@ -18,6 +18,7 @@ import LogIn from "./Pages/LogIn";
 import SignUp from "./Pages/SignUp";
 import UserPage from "./Pages/UserPage";
 import AdminUserPage from "./Pages/AdminUserPage";
+import SettingsPanel from "./Components/SettingsPanel";
 
 import PrivateRoute from "./Components/PrivateRoute";
 import RoleBasedWrapper from "./Components/RoleBasedWrapper";
@@ -27,6 +28,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <Layout>
+          <SettingsPanel />
           <Routes>
             <Route path="/*" element={<Main />} />
             <Route path="/Home" element={<Main />} />
