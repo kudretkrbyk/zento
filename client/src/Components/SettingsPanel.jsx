@@ -38,7 +38,7 @@ export default function SettingsPanel() {
       className="settings-panel fixed top-1/3 left-0 flex items-center justify-center z-40 group/main"
       ref={panelRef}
     >
-      <div className="z-40 settings-menu w-0 h-full group-hover/main:w-80 group-hover/main:p-4 duration-1000 bg-white text-nowrap border rounded overflow-hidden">
+      <div className="z-40 settings-menu w-0 h-full group-hover/main:w-80 group-hover/main:p-4 duration-1000 bg-white text-nowrap shadow overflow-hidden">
         {/* Accent Color */}
         <div className="group/setting">
           <p
@@ -117,9 +117,9 @@ export default function SettingsPanel() {
 
       {/* Settings Icon */}
       <div
-        className={`settings-icon bg-white flex items-center justify-end w-20 h-20 p-4 border rounded z-30`}
+        className={`settings-icon bg-white flex items-center justify-end w-20 h-20 p-4  z-30`}
       >
-        <IoSettings className="size-10 group-hover:rotate-180 duration-1000" />
+        <IoSettings className="size-10 group-hover/main:rotate-180 duration-1000" />
       </div>
     </div>
   );
