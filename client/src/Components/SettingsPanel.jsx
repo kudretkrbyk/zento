@@ -117,7 +117,7 @@ export default function SettingsPanel() {
 
       {/* Settings Icon */}
       <div
-        className={`settings-icon bg-white flex items-center justify-end w-20 h-20 p-4  z-30`}
+        className={` bg-white flex items-center justify-end w-20 h-20 p-4  z-30`}
       >
         <IoSettings className="size-10 group-hover/main:rotate-180 duration-1000" />
       </div>
