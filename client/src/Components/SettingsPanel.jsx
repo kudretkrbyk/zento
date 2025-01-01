@@ -35,7 +35,7 @@ export default function SettingsPanel() {
 
   return (
     <div
-      className="settings-panel-main fixed top-1/3 left-0 flex items-center justify-center z-40 group/main"
+      className="settings-panel fixed top-1/3 left-0 flex items-center justify-center z-40 group/main"
       ref={panelRef}
     >
       <div className="z-40 settings-menu w-0 h-full group-hover/main:w-80 group-hover/main:p-4 duration-1000 bg-white text-nowrap shadow overflow-hidden">
