@@ -42,7 +42,7 @@ export default function SettingsPanel() {
         {/* Accent Color */}
         <div className="group/setting">
           <p
-            className="cursor-pointer-setting"
+            className="cursor-pointer-settings"
             onClick={() =>
               setVisiblePicker(
                 visiblePicker === "accentColor" ? null : "accentColor"
